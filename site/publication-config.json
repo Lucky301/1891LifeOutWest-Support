@@ -1,0 +1,17 @@
+{
+  "operator_name": "SupraCore",
+  "support_email": "support@supracore.co.kr",
+  "privacy_contact_email": "support@supracore.co.kr",
+  "support_retention_days": null,
+  "effective_date": "2026-10-15",
+  "site_origin": "https://lucky301.github.io",
+  "privacy_reviewed": true,
+  "publication_mode": "release",
+  "support_retention_text": {
+    "ko": "문의 대응에 필요한 기간 동안 보관하고 목적 달성 후 지체 없이 삭제합니다. 법령상 보관 의무가 있는 기록은 해당 기간 동안 별도 보관합니다.",
+    "en": "Support messages are kept only for the time needed to respond, then deleted without undue delay. Records required by law are retained separately for the applicable period."
+  },
+  "base_path": "/1891LifeOutWest-Support",
+  "issues_url": "https://github.com/Lucky301/1891LifeOutWest-Support/issues",
+  "privacy_review_scope": "Current app source and SDK documentation, support email, GitHub Pages hosting; final signed binary App Privacy answers remain a separate submission check."
+}

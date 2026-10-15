@@ -1,0 +1,22 @@
+{
+  "app": "1891: Life Out West",
+  "publisher": "SupraCore",
+  "support_email": "support@supracore.co.kr",
+  "marketing_url": "https://lucky301.github.io/1891LifeOutWest-Support/",
+  "standard_eula_url": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+  "public_bug_reports": "https://github.com/Lucky301/1891LifeOutWest-Support/issues",
+  "localizations": {
+    "ko": {
+      "support_url": "https://lucky301.github.io/1891LifeOutWest-Support/ko/support/",
+      "privacy_policy_url": "https://lucky301.github.io/1891LifeOutWest-Support/ko/privacy/",
+      "privacy_requests_url": "https://lucky301.github.io/1891LifeOutWest-Support/ko/privacy/#rights",
+      "contact_url": "https://lucky301.github.io/1891LifeOutWest-Support/ko/support/#contact"
+    },
+    "en-US": {
+      "support_url": "https://lucky301.github.io/1891LifeOutWest-Support/en/support/",
+      "privacy_policy_url": "https://lucky301.github.io/1891LifeOutWest-Support/en/privacy/",
+      "privacy_requests_url": "https://lucky301.github.io/1891LifeOutWest-Support/en/privacy/#rights",
+      "contact_url": "https://lucky301.github.io/1891LifeOutWest-Support/en/support/#contact"
+    }
+  }
+}

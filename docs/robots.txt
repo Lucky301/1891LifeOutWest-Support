@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lucky301.github.io/1891LifeOutWest-Support/sitemap.xml
