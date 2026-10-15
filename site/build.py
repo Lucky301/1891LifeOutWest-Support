@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build portable static support/privacy pages. No external dependencies."""
 import html
+import hashlib
 import json
 import re
 import shutil
@@ -39,6 +40,7 @@ def problems(config):
 
 READY = CONFIG.get('publication_mode') == 'release' and not problems(CONFIG)
 SITE_BASE = CONFIG['site_origin'].rstrip('/') + CONFIG.get('base_path', '').rstrip('/')
+ASSET_TAG = hashlib.sha256((ROOT/'assets/site.js').read_bytes() + (ROOT/'assets/site.css').read_bytes()).hexdigest()[:12]
 if CONFIG.get('publication_mode') == 'release' and not READY:
     raise SystemExit('공개용 빌드 차단 / Release blocked:\n' + '\n'.join(problems(CONFIG)))
 
@@ -60,7 +62,7 @@ def document(lang, kind, title, description, body, hero=True):
     canonical = SITE_BASE + '/' + route(lang, kind)
     meta = '<meta name="robots" content="noindex,nofollow">' if not READY else f'<link rel="canonical" href="{h(canonical)}">'
     alternates = ''.join(f'<link rel="alternate" hreflang="{code}" href="{h(SITE_BASE + "/" + route(code,kind))}">' for code in ('ko','en')) if READY else ''
-    head = f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{h(title)} · 1891: Life Out West</title><meta name="description" content="{h(description)}">{meta}{alternates}<link rel="icon" href="../../assets/icon.png"><link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/site.js" defer></script></head><body>'
+    head = f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{h(title)} · 1891: Life Out West</title><meta name="description" content="{h(description)}">{meta}{alternates}<link rel="icon" href="../../assets/icon.png"><link rel="stylesheet" href="../../assets/site.css?v={ASSET_TAG}"><script src="../../assets/site.js?v={ASSET_TAG}" defer></script></head><body>'
     skip = '본문으로 건너뛰기' if lang == 'ko' else 'Skip to content'
     header = f'<a class="skip" href="#main">{skip}</a><header><div class="topbar"><a class="brand" href="../../index.html"><img src="../../assets/icon.png" alt="" width="42" height="42">1891: LIFE OUT WEST</a>{links}</div></header>{banner}'
     footer_text = ('1891: 서부에서 살아가기 · 지원과 개인정보' if lang == 'ko' else '1891: Life Out West · Support & privacy')
@@ -120,7 +122,7 @@ banner = '' if READY else '<div class="banner">게시 준비용 초안 · Public
 <title>1891: Life Out West · English / 한국어</title>
 <meta name="description" content="Choose English or 한국어 for 1891: Life Out West support and privacy information.">
 {'<meta name="robots" content="noindex,nofollow">' if not READY else ''}
-<link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script>
+<link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="assets/site.css?v={ASSET_TAG}"><script src="assets/site.js?v={ASSET_TAG}" defer></script>
 </head><body>{banner}<main id="main" class="home language-home" data-language-home>
 <a class="brand language-brand" href="?choose-language=1"><img src="assets/icon.png" alt="" width="54" height="54">1891: LIFE OUT WEST</a>
 <span class="eyebrow home-eyebrow">SUPPORT &amp; PRIVACY · 지원과 개인정보</span>
@@ -133,7 +135,7 @@ banner = '' if READY else '<div class="banner">게시 준비용 초안 · Public
 <p class="small">Your choice is remembered in this browser.<br><span lang="ko">선택한 언어는 이 브라우저에 저장됩니다. 페이지에서 언제든 바꿀 수 있습니다.</span></p>
 <noscript><p class="small">The links work without JavaScript; your language choice will not be saved.<br><span lang="ko">JavaScript 없이도 링크를 이용할 수 있으며, 언어 선택은 저장되지 않습니다.</span></p></noscript>
 <details class="about-game"><summary>About the game · 게임 소개</summary><p>1891: 서부에서 살아가기 — 사금 채취, 광산 탐험과 말을 타는 여행. 집과 목장을 마련하며 일곱 지도 조각을 따라 엘도라도로 향하는 1인용 서부 탐험 게임입니다.</p><p>1891: Life Out West — Pan for gold, explore mines and ride the frontier. Build a home and ranch as you follow seven map fragments toward El Dorado.</p><p>iPhone · iPad · Mac<br>게임 내 첫 3일 무료 · 이후 일회성 정식판 구매<br>First 3 in-game days free · One-time Full Version purchase thereafter</p></details>
-<footer class="language-footer">SupraCore · <a href="mailto:support@supracore.co.kr">support@supracore.co.kr</a><br><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple Standard EULA · 표준 이용약관</a></footer>
+<footer class="language-footer">SUPRACORE · <a href="mailto:support@supracore.co.kr">support@supracore.co.kr</a><br><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple Standard EULA · 표준 이용약관</a></footer>
 </main></body></html>''')
 assets = DIST/'assets';assets.mkdir(exist_ok=True)
 for name in ('site.css','site.js','icon.png','frontier.png'):shutil.copyfile(ROOT/'assets'/name,assets/name)

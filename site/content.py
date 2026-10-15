@@ -125,7 +125,7 @@ POLICY = {'ko': {'title': '개인정보처리방침',
                       '1. 적용 범위',
                       ['이 방침은 한국어·영어를 지원하는 1891: 서부에서 살아가기 / 1891: Life Out West의 iPhone·iPad·Mac 버전과 이 지원 사이트에 적용됩니다. 앱에 '
                        '별도 게임 계정이나 사용자 채팅 기능은 없습니다.',
-                       '이 방침의 운영자는 SupraCore이며, 개인정보 및 지원 문의는 support@supracore.co.kr로 접수합니다.']),
+                       '이 방침의 운영자는 SUPRACORE이며, 개인정보 및 지원 문의는 support@supracore.co.kr로 접수합니다.']),
                      ('local',
                       '2. 기기에 저장되는 정보',
                       ['게임 진행, 플레이어가 입력한 이름, 인벤토리와 기록, 설정, 구매 권한 상태, 사진 모드 이미지는 기기에 저장되거나 기기에서 처리됩니다. 이름에 본인 실명을 사용할 필요는 '
@@ -193,7 +193,7 @@ POLICY = {'ko': {'title': '개인정보처리방침',
                       ['This policy covers the Korean and English iPhone, iPad and Mac versions of 1891: Life Out West / '
                        '1891: 서부에서 살아가기 and this support website. The app does not require a separate game account and has '
                        'no user chat feature.',
-                       'The publisher for this policy is SupraCore. Privacy and support requests can be sent to '
+                       'The publisher for this policy is SUPRACORE. Privacy and support requests can be sent to '
                        'support@supracore.co.kr.']),
                      ('local',
                       '2. Information on your device',

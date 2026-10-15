@@ -1,6 +1,6 @@
 # 1891: Life Out West — Support
 
-SupraCore의 **1891: 서부에서 살아가기 / 1891: Life Out West** 공개 지원·개인정보처리방침 사이트입니다.
+SUPRACORE의 **1891: 서부에서 살아가기 / 1891: Life Out West** 공개 지원·개인정보처리방침 사이트입니다.
 
 문의: [support@supracore.co.kr](mailto:support@supracore.co.kr)
 
@@ -36,7 +36,7 @@ GitHub Pages는 **main 브랜치의 `/docs` 폴더**를 게시합니다. 빌드�
 
 ## English
 
-Public support and privacy pages for **1891: Life Out West** by SupraCore.
+Public support and privacy pages for **1891: Life Out West** by SUPRACORE.
 
 Contact **support@supracore.co.kr**. Public GitHub Issues are suitable for general bug reports; send personal or purchase-related material privately by email.
 
