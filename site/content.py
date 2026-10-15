@@ -153,6 +153,8 @@ POLICY = {'ko': {'title': '개인정보처리방침',
                      ('support',
                       '6. 문의와 사이트 접속',
                       ['이 지원 사이트는 정적 페이지이며 자체 문의 제출 폼, 광고, 방문 분석 스크립트나 쿠키를 사용하지 않습니다. 문의 양식 복사는 브라우저에서 처리되며 사이트로 제출되지 않습니다.',
+                       '언어를 선택하면 이 브라우저에 한국어 또는 영어 선택값만 저장해 다음 방문에 사용합니다. 이 기능은 사용자 식별·광고·방문 분석에 사용하지 않으며 외부 서버에 언어 선택값을 '
+                       '전송하지 않습니다. 페이지의 언어 전환이나 언어 선택 링크로 바꿀 수 있고, 브라우저 사이트 데이터를 지우면 저장된 선택도 삭제됩니다.',
                        '이메일 문의 시 이메일 주소, 문의 내용과 사용자가 선택해 첨부한 기기 정보·이미지를 문의 대응 목적으로 처리합니다. 문의 대응에 필요한 기간 보관하고 목적 달성 후 지체 없이 '
                        '삭제합니다. 법령상 보관 의무가 있는 기록은 해당 기간 동안 별도 보관합니다.',
                        '이 사이트는 GitHub Pages로 제공됩니다. GitHub는 로그인 여부와 관계없이 보안 목적으로 방문자의 IP 주소를 기록·보관하며, 접속 정보는 GitHub '
@@ -234,6 +236,10 @@ POLICY = {'ko': {'title': '개인정보처리방침',
                       ['This is a static website with no support submission form, advertising, visitor analytics scripts or '
                        'cookies of its own. Copying the support template happens in your browser and does not submit it to '
                        'this website.',
+                       'When you choose a language, this browser stores only the Korean or English preference for your next '
+                       'visit. The preference is not used for identification, advertising or visitor analytics, and is not '
+                       'sent to an external server. Change it using the language switch or chooser, or remove it by '
+                       'clearing this site’s browser data.',
                        'If you email support, your email address, message and any device details or images you choose to '
                        'attach are used to respond. Messages are kept only for the time needed to respond, then deleted '
                        'without undue delay. Records required by law are retained separately for the applicable period.',

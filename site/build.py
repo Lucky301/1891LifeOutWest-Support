@@ -56,7 +56,7 @@ def document(lang, kind, title, description, body, hero=True):
     label_support, label_privacy = ('지원', '개인정보처리방침') if lang == 'ko' else ('Support', 'Privacy')
     switch = 'English' if lang == 'ko' else '한국어'
     banner = '' if READY else '<div class="banner" role="note">' + ('게시 준비용 초안 · 운영자 정보와 문의처, 정책 검토가 완료되면 공개합니다.' if lang == 'ko' else 'Publication draft · Publisher details, contact information and policy review are pending.') + '</div>'
-    links = f'<nav class="nav" aria-label="{"주요 메뉴" if lang == "ko" else "Main navigation"}"><a href="{url_from(lang,kind,to_kind="support")}" {"aria-current=page" if kind == "support" else ""}>{label_support}</a><a href="{url_from(lang,kind,to_kind="privacy")}" {"aria-current=page" if kind == "privacy" else ""}>{label_privacy}</a><a class="language" href="{url_from(lang,kind,to_lang=other)}" lang="{other}" hreflang="{other}">{switch}</a></nav>'
+    links = f'<nav class="nav" aria-label="{"주요 메뉴" if lang == "ko" else "Main navigation"}"><a href="{url_from(lang,kind,to_kind="support")}" {"aria-current=page" if kind == "support" else ""}>{label_support}</a><a href="{url_from(lang,kind,to_kind="privacy")}" {"aria-current=page" if kind == "privacy" else ""}>{label_privacy}</a><a class="language" data-language="{other}" href="{url_from(lang,kind,to_lang=other)}" lang="{other}" hreflang="{other}">{switch}</a></nav>'
     canonical = SITE_BASE + '/' + route(lang, kind)
     meta = '<meta name="robots" content="noindex,nofollow">' if not READY else f'<link rel="canonical" href="{h(canonical)}">'
     alternates = ''.join(f'<link rel="alternate" hreflang="{code}" href="{h(SITE_BASE + "/" + route(code,kind))}">' for code in ('ko','en')) if READY else ''
@@ -65,7 +65,7 @@ def document(lang, kind, title, description, body, hero=True):
     header = f'<a class="skip" href="#main">{skip}</a><header><div class="topbar"><a class="brand" href="../../index.html"><img src="../../assets/icon.png" alt="" width="42" height="42">1891: LIFE OUT WEST</a>{links}</div></header>{banner}'
     footer_text = ('1891: 서부에서 살아가기 · 지원과 개인정보' if lang == 'ko' else '1891: Life Out West · Support & privacy')
     operator = h(CONFIG['operator_name']) if CONFIG['operator_name'] else ('운영자 정보 입력 대기' if lang == 'ko' else 'Publisher details pending')
-    footer = f'<footer><div class="foot"><span>{footer_text}<br>{operator}</span><span><a href="{url_from(lang,kind,to_kind="support")}">{label_support}</a><a href="{url_from(lang,kind,to_kind="privacy")}">{label_privacy}</a></span></div></footer></body></html>'
+    footer = f'<footer><div class="foot"><span>{footer_text}<br>{operator}</span><span><a href="{url_from(lang,kind,to_kind="support")}">{label_support}</a><a href="{url_from(lang,kind,to_kind="privacy")}">{label_privacy}</a><a href="../../index.html?choose-language=1">{'언어 선택' if lang == 'ko' else 'Choose language'}</a></span></div></footer></body></html>'
     return head + header + body + footer
 
 
@@ -115,7 +115,26 @@ for lang, copy in POLICY.items():
     (out / 'index.html').write_text(document(lang,'privacy',copy['title'],copy['intro'],main))
 
 banner = '' if READY else '<div class="banner">게시 준비용 초안 · Publication draft</div>'
-(DIST/'index.html').write_text(f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>1891: Life Out West · 지원 / Support</title><meta name="description" content="1891: Life Out West 한국어·영어 지원 및 개인정보처리방침. Support and privacy in Korean and English.">{'<meta name="robots" content="noindex,nofollow">' if not READY else ''}<link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="assets/site.css"></head><body>{banner}<main id="main" class="home"><span class="eyebrow home-eyebrow">1891 · LIFE OUT WEST</span><h1>당신의 여정을 위한 안내<br><span lang="en">Help for your journey</span></h1><p>게임 지원과 개인정보처리방침을 확인하세요.<br><span lang="en">Support and privacy information for 1891: Life Out West.</span></p><section class="callout"><h2>1891: 서부에서 살아가기</h2><p>사금 채취, 광산 탐험과 말을 타는 여행. 집과 목장을 마련하며 일곱 지도 조각을 따라 엘도라도로 향하는 1인용 서부 탐험 게임입니다. 한국어·영어와 iPhone·iPad·Mac을 지원합니다.</p><p lang="en">Pan for gold, explore mines and ride the frontier. Build a home and ranch as you follow seven map fragments toward El Dorado in this single-player western adventure for iPhone, iPad and Mac, in Korean and English.</p><p>일반 여정의 게임 내 첫 3일 무료 · 이후 일회성 정식판 구매<br><span lang="en">First 3 in-game days free · One-time Full Version purchase thereafter</span></p></section><div class="languages"><section class="language-panel"><h2>한국어</h2><div class="actions"><a class="button" href="ko/support/">지원 페이지</a><a class="button secondary" href="ko/privacy/">개인정보처리방침</a></div></section><section class="language-panel" lang="en"><h2>English</h2><div class="actions"><a class="button" href="en/support/">Support</a><a class="button secondary" href="en/privacy/">Privacy Policy</a></div></section></div><p><a href="mailto:support@supracore.co.kr">support@supracore.co.kr</a> · <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple 표준 이용약관 · Standard EULA</a></p></main></body></html>''')
+(DIST/'index.html').write_text(f'''<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1891: Life Out West · English / 한국어</title>
+<meta name="description" content="Choose English or 한국어 for 1891: Life Out West support and privacy information.">
+{'<meta name="robots" content="noindex,nofollow">' if not READY else ''}
+<link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script>
+</head><body>{banner}<main id="main" class="home language-home" data-language-home>
+<a class="brand language-brand" href="?choose-language=1"><img src="assets/icon.png" alt="" width="54" height="54">1891: LIFE OUT WEST</a>
+<span class="eyebrow home-eyebrow">SUPPORT &amp; PRIVACY · 지원과 개인정보</span>
+<h1>Choose your language<br><span lang="ko">언어를 선택하세요</span></h1>
+<p>Select a language to find help and read our privacy policy.<br><span lang="ko">원하는 언어로 지원 안내와 개인정보처리방침을 확인하세요.</span></p>
+<div class="language-choices" aria-label="Language / 언어">
+<a class="language-choice" data-language="en" href="en/support/" lang="en" hreflang="en"><span class="choice-code">EN</span><strong>English</strong><span>Support &amp; privacy information</span><span class="choice-arrow" aria-hidden="true">→</span></a>
+<a class="language-choice" data-language="ko" href="ko/support/" lang="ko" hreflang="ko"><span class="choice-code">KO</span><strong>한국어</strong><span>지원 안내와 개인정보처리방침</span><span class="choice-arrow" aria-hidden="true">→</span></a>
+</div>
+<p class="small">Your choice is remembered in this browser.<br><span lang="ko">선택한 언어는 이 브라우저에 저장됩니다. 페이지에서 언제든 바꿀 수 있습니다.</span></p>
+<noscript><p class="small">The links work without JavaScript; your language choice will not be saved.<br><span lang="ko">JavaScript 없이도 링크를 이용할 수 있으며, 언어 선택은 저장되지 않습니다.</span></p></noscript>
+<details class="about-game"><summary>About the game · 게임 소개</summary><p>1891: 서부에서 살아가기 — 사금 채취, 광산 탐험과 말을 타는 여행. 집과 목장을 마련하며 일곱 지도 조각을 따라 엘도라도로 향하는 1인용 서부 탐험 게임입니다.</p><p>1891: Life Out West — Pan for gold, explore mines and ride the frontier. Build a home and ranch as you follow seven map fragments toward El Dorado.</p><p>iPhone · iPad · Mac<br>게임 내 첫 3일 무료 · 이후 일회성 정식판 구매<br>First 3 in-game days free · One-time Full Version purchase thereafter</p></details>
+<footer class="language-footer">SupraCore · <a href="mailto:support@supracore.co.kr">support@supracore.co.kr</a><br><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple Standard EULA · 표준 이용약관</a></footer>
+</main></body></html>''')
 assets = DIST/'assets';assets.mkdir(exist_ok=True)
 for name in ('site.css','site.js','icon.png','frontier.png'):shutil.copyfile(ROOT/'assets'/name,assets/name)
 (DIST/'robots.txt').write_text('User-agent: *\n' + ('Allow: /\nSitemap: '+SITE_BASE+'/sitemap.xml\n' if READY else 'Disallow: /\n'))
